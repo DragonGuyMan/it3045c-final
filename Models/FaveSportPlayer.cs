@@ -1,6 +1,6 @@
 ﻿namespace FinalProject.Models
 {
-    public class FaveSportPlayers
+    public class FaveSportPlayer
     {
         public int Id { get; set; }
         public string TeamMemberName { get; set; }

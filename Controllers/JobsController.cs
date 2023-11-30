@@ -22,6 +22,7 @@ namespace FinalProject.Controllers
 
         // GET: api/Jobs
         [HttpGet]
+        //Return all entries from the jobs table
         public async Task<ActionResult<IEnumerable<Job>>> GetJobs()
         {
           if (_context.Jobs == null)
@@ -33,6 +34,7 @@ namespace FinalProject.Controllers
 
         // GET: api/Jobs/5
         [HttpGet("{id}")]
+        //Return a specific entry from the jobs table
         public async Task<ActionResult<Job>> GetJob(int id)
         {
           if (_context.Jobs == null)
@@ -51,6 +53,7 @@ namespace FinalProject.Controllers
 
         // PUT: api/Jobs/5
         [HttpPut("{id}")]
+        //This updates an entry in the jobs table
         public async Task<IActionResult> PutJob(int id, Job job)
         {
             if (id != job.Id)
@@ -80,8 +83,8 @@ namespace FinalProject.Controllers
         }
 
         // POST: api/Jobs
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        //Add a new entry to the Jobs table
         public async Task<ActionResult<Job>> PostJob(Job job)
         {
           if (_context.Jobs == null)
@@ -96,6 +99,7 @@ namespace FinalProject.Controllers
 
         // DELETE: api/Jobs/5
         [HttpDelete("{id}")]
+        //Remove an entry from the Jobs table
         public async Task<IActionResult> DeleteJob(int id)
         {
             if (_context.Jobs == null)

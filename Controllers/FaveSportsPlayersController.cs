@@ -73,6 +73,8 @@ namespace FinalProject.Controllers
         [HttpPost]
         public async Task<ActionResult<FaveSportsPlayer>> PostFaveSportsPlayer(FaveSportsPlayer faveSportsPlayer)
         {
+            faveSportsPlayer.Id = 0; // Prevents error from including id other than 0 or null in POST
+
             _context.FaveSportsPlayers.Add(faveSportsPlayer);
             await _context.SaveChangesAsync();
 

@@ -35,6 +35,10 @@ namespace FinalProject.Controllers
             {
                 return NotFound();
             }
+            if (id == null || id == 0)
+            {
+                return Ok(await _context.FaveMovies.Take(5).ToListAsync());
+            }
             var faveMovie = await _context.FaveMovies.FindAsync(id);
 
             if (faveMovie == null)
@@ -80,6 +84,10 @@ namespace FinalProject.Controllers
         [HttpPost]
         public async Task<ActionResult<FaveMovie>> PostFaveMovie(FaveMovie faveMovie)
         {
+            if (_context.FaveMovies == null)
+            {
+                return NotFound();
+            }
             _context.FaveMovies.Add(faveMovie);
             await _context.SaveChangesAsync();
 
@@ -90,6 +98,10 @@ namespace FinalProject.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFaveMovie(int id)
         {
+            if (_context.FaveMovies == null)
+            {
+                return NotFound();
+            }
             var faveMovie = await _context.FaveMovies.FindAsync(id);
             if (faveMovie == null)
             {

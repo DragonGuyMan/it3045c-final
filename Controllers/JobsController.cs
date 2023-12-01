@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FinalProject.Models;
+using MessagePack;
 
 namespace FinalProject.Controllers
 {
@@ -91,6 +92,7 @@ namespace FinalProject.Controllers
           {
               return Problem("Entity set 'TeamContext.Jobs'  is null.");
           }
+            job.Id = 0;
             _context.Jobs.Add(job);
             await _context.SaveChangesAsync();
 

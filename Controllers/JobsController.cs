@@ -27,13 +27,16 @@ namespace FinalProject.Controllers
         //Return a specific entry from the jobs table
         public async Task<ActionResult> GetJob(int? id)
         {
-          if (_context.Jobs == null)
-          {
-              return NotFound();
-          }
-            if (id == null) {
+            if (_context.Jobs == null)
+            {
+                return NotFound();
+            }
+
+            if (id == null || id == 0)
+            {
                 return Ok(await _context.Jobs.Take(5).ToListAsync());
             }
+
             var job = await _context.Jobs.FindAsync(id);
 
             if (job == null)

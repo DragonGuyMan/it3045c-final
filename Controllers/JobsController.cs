@@ -21,27 +21,19 @@ namespace FinalProject.Controllers
             _context = context;
         }
 
-        // GET: api/Jobs
-        [HttpGet]
-        //Return all entries from the jobs table
-        public async Task<ActionResult<IEnumerable<Job>>> GetJobs()
-        {
-          if (_context.Jobs == null)
-          {
-              return NotFound();
-          }
-            return await _context.Jobs.ToListAsync();
-        }
 
         // GET: api/Jobs/5
-        [HttpGet("{id}")]
+        [HttpGet]
         //Return a specific entry from the jobs table
-        public async Task<ActionResult<Job>> GetJob(int id)
+        public async Task<ActionResult> GetJob(int? id)
         {
           if (_context.Jobs == null)
           {
               return NotFound();
           }
+            if (id == null) {
+                return Ok(await _context.Jobs.Take(5).ToListAsync());
+            }
             var job = await _context.Jobs.FindAsync(id);
 
             if (job == null)
@@ -49,7 +41,7 @@ namespace FinalProject.Controllers
                 return NotFound();
             }
 
-            return job;
+            return Ok(job);
         }
 
         // PUT: api/Jobs/5

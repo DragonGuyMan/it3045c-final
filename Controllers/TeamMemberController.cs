@@ -22,21 +22,26 @@ namespace FinalProject.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TeamMember>>> GetTeamMembers()
         {
-            return await _context.TeamMembers.ToListAsync();
+            return await _context.TeamMembers.Take(5).ToListAsync();
         }
 
         // GET: api/TeamMember/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TeamMember>> GetTeamMember(int id)
+        public async Task<ActionResult<IEnumerable<TeamMember>>> GetTeamMember(int? id)
         {
-            var teamMember = await _context.TeamMembers.FindAsync(id);
+            if (!id.HasValue || id == 0)
+            {
+                return await _context.TeamMembers.Take(5).ToListAsync();
+            }
+
+            var teamMember = await _context.TeamMembers.FindAsync(id.Value);
 
             if (teamMember == null)
             {
                 return NotFound();
             }
 
-            return teamMember;
+            return new List<TeamMember> { teamMember };
         }
 
         // PUT: api/TeamMember/5

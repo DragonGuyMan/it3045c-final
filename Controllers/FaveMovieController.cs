@@ -20,16 +20,9 @@ namespace FinalProject.Controllers
             _context = context;
         }
 
-        // GET: api/FaveMovies
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<FaveMovie>>> GetFaveMovies()
-        {
-            return await _context.FaveMovies.ToListAsync();
-        }
-
         // GET: api/FaveMovies/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<FaveMovie>> GetFaveMovie(int id)
+        [HttpGet]
+        public async Task<ActionResult<FaveMovie>> GetFaveMovie(int? id)
         {
             if (_context.FaveMovies == null)
             {

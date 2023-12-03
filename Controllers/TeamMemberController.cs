@@ -18,15 +18,8 @@ namespace FinalProject.Controllers
             _context = context;
         }
 
-        // GET: api/TeamMember
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<TeamMember>>> GetTeamMembers()
-        {
-            return await _context.TeamMembers.Take(5).ToListAsync();
-        }
-
         // GET: api/TeamMember/5
-        [HttpGet("{id}")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<TeamMember>>> GetTeamMember(int? id)
         {
             if (!id.HasValue || id == 0)

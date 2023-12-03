@@ -18,17 +18,15 @@ namespace FinalProject.Controllers
             _context = context;
         }
 
-        // GET: api/FaveSportsPlayers
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<FaveSportsPlayer>>> GetFaveSportsPlayers()
-        {
-            return await _context.FaveSportsPlayers.ToListAsync();
-        }
-
         // GET: api/FaveSportsPlayers/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<FaveSportsPlayer>> GetFaveSportsPlayer(int id)
+        [HttpGet]
+        public async Task<ActionResult<FaveSportsPlayer>> GetFaveSportsPlayer(int? id)
         {
+            if (id == null || id == 0)
+            {
+                return Ok(await _context.FaveSportsPlayers.Take(5).ToListAsync());
+            }
+
             var faveSportsPlayer = await _context.FaveSportsPlayers.FindAsync(id);
 
             if (faveSportsPlayer == null)

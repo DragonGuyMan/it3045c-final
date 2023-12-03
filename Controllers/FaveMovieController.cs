@@ -81,6 +81,9 @@ namespace FinalProject.Controllers
             {
                 return NotFound();
             }
+
+            faveMovie.Id = 0; // Prevents error from including id other than 0 or null in POST
+
             _context.FaveMovies.Add(faveMovie);
             await _context.SaveChangesAsync();
 

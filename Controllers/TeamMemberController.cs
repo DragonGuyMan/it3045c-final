@@ -71,6 +71,8 @@ namespace FinalProject.Controllers
         [HttpPost]
         public async Task<ActionResult<TeamMember>> PostTeamMember(TeamMember teamMember)
         {
+            teamMember.Id = 0; // Prevents error from including id other than 0 or null in POST
+
             _context.TeamMembers.Add(teamMember);
             await _context.SaveChangesAsync();
 
